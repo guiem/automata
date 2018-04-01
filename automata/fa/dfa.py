@@ -164,11 +164,9 @@ class DFA(fa.FA):
             transitions=dfa_transitions, initial_state=dfa_initial_state,
             final_states=dfa_final_states)
 
-    def num_accepted(self, length):
-        accepted = []
-        symbol_permutations = list(itertools.product(self.input_symbols, repeat=length))
-        for symbol_perm in symbol_permutations:
+    def accepted(self, length):
+        for symbol_perm in itertools.product(self.input_symbols, repeat=length):
             w = ''.join(symbol_perm)
             if self.input_accepted(w):
-                accepted.append(w)
-        return len(accepted), accepted
+                yield w
+        return w

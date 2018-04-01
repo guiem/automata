@@ -24,6 +24,16 @@ class Automaton(metaclass=abc.ABCMeta):
         """Check if the given string is accepted by this automaton."""
         pass
 
+    @abc.abstractmethod
+    def render(self):
+        """Draw the automaton"""
+        pass
+
+    @abc.abstractmethod
+    def accepted(self, len):
+        """Compute the number of words accepted of length 'len' """
+        pass
+
     def _validate_input_return(self, input_str):
         """
         Check if the given string is accepted by this automaton.
@@ -83,11 +93,3 @@ class Automaton(metaclass=abc.ABCMeta):
             return True
         except exceptions.RejectionError:
             return False
-
-    def render(self):
-        """Draw the automaton"""
-        pass
-
-    def num_accepted(self, len):
-        """Compute the number of words accepted of length 'len' """
-        pass
